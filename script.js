@@ -1,41 +1,31 @@
-const galleryContainer = document.querySelector('.gallery-container');
-let isDragging = false;
-let startX;
-let scrollLeft;
+document.addEventListener("DOMContentLoaded", function () {
+  const comic = document.getElementById('comic');
+  const scrollAmount = window.innerWidth * 0.8; // scroll by 80% of screen width
 
-galleryContainer.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    galleryContainer.classList.add('active');
-    startX = e.pageX - galleryContainer.offsetLeft;
-    scrollLeft = galleryContainer.scrollLeft;
-});
+  // Load images dynamically
+  const imageFiles = [
+    'comic1.jpg',
+    'comic2.jpg',
+    'comic3.jpg',
+    // Add more image filenames as needed
+  ];
 
-galleryContainer.addEventListener('mouseleave', () => {
-    isDragging = false;
-});
+  imageFiles.forEach(src => {
+    const img = document.createElement('img');
+    img.src = `images/${src}`;
+    comic.appendChild(img);
+  });
 
-galleryContainer.addEventListener('mouseup', () => {
-    isDragging = false;
-});
+  document.body.addEventListener('click', (e) => {
+    const x = e.clientX;
+    const middle = window.innerWidth / 2;
 
-galleryContainer.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - galleryContainer.offsetLeft;
-    const walk = (x - startX) * 2;
-    galleryContainer.scrollLeft = scrollLeft - walk;
-});
-
-let touchStartX = 0;
-let touchScrollLeft = 0;
-
-galleryContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].pageX;
-    touchScrollLeft = galleryContainer.scrollLeft;
-});
-
-galleryContainer.addEventListener('touchmove', (e) => {
-    const touchX = e.touches[0].pageX;
-    const walk = (touchX - touchStartX) * 2;
-    galleryContainer.scrollLeft = touchScrollLeft - walk;
+    if (x > middle) {
+      // Tap on right side = scroll right
+      comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    } else {
+      // Tap on left side = scroll left
+      comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+  });
 });
