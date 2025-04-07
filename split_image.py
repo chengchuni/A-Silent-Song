@@ -4,7 +4,7 @@ from io import BytesIO
 import os
 
 # 資料夾路徑
-folder_url = "https://github.com/chengchuni/A-Silent-Song/tree/main/images"
+folder_url = "https://github.com/chengchuni/Promise/tree/main/images"
 
 # 圖片檔案列表，假設圖片名稱是 image1.png, image2.png...
 image_files = ["comic1.jpg", "comic2.jpg", "comic3.jpg"]  # 你可以根據需要添加圖片名稱
