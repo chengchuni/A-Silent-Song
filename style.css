@@ -1,40 +1,21 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  touch-action: manipulation;
 }
 
-.gallery-container {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: grab;
+.comic-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.gallery img {
-    height: 100vh;
-    width: auto;
-    flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-    .gallery-container {
-        height: 100vh;
-    }
-
-    .gallery img {
-        height: 80vh;
-    }
+.comic-container img {
+  height: 100vh;
+  flex-shrink: 0;
+  object-fit: contain;
 }
