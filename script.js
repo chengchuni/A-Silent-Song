@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     'comic1.jpg',
     'comic2.jpg',
     'comic3.jpg',
+    'comic4.jpg',
     // Add more image filenames as needed
   ];
 
