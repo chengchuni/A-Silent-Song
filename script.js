@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const comic = document.getElementById('comic');
-  const scrollAmount = window.innerWidth * 0.8; // scroll by 80% of screen width
+  const scrollAmount = window.innerWidth * 0.5; // scroll by 50% of screen width
 
   // Load images dynamically
   const imageFiles = [
