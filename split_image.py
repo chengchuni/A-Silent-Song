@@ -7,7 +7,7 @@ import os
 folder_url = "https://github.com/chengchuni/Promise/tree/main/images"
 
 # 圖片檔案列表，假設圖片名稱是 image1.png, image2.png...
-image_files = ["comic1.jpg", "comic2.jpg", "comic3.jpg"]  # 你可以根據需要添加圖片名稱
+image_files = ["wln0319-1-1.jpg", "wln0319-1-2.jpg", "wln0319-2-1.jpg", "wln0319-2-2.jpg", "wln0319-3-1.jpg", "wln0319-3-2.jpg", "wln0319-4-1.jpg", "wln0319-4-2.jpg"]  # 你可以根據需要添加圖片名稱
 
 # 輸出資料夾
 output_folder = "output_images"
