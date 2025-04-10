@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const startButton = document.getElementById("startButton");
-  const homepage = document.getElementById("homepage");
-  const comic = document.getElementById("comic");
-  const scrollAmount = window.innerWidth * 0.5; // scroll by 50% of screen width
+  const comic = document.getElementById('comic');
+  const homepage = document.getElementById('homepage');
+  const startButton = document.getElementById('startButton');
+  const scrollAmount = window.innerWidth * 0.5; // Scroll by 50% of screen width
 
-  // Load images dynamically
+  // Image files to load dynamically
   const imageFiles = [
     'wln0319-1-1.webp',
     'wln0319-1-2.webp',
@@ -17,27 +17,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add more image filenames as needed
   ];
 
-  // Add event listener for start button
-  startButton.addEventListener("click", function () {
-    // Fade out the overlay by changing its opacity
-    homepageOverlay.style.transition = 'opacity 0.5s';
-    homepage.style.opacity = '0';
+  // Load images dynamically into the comic container
+  function loadImages() {
+    imageFiles.forEach(src => {
+      const img = document.createElement('img');
+      img.src = `works/md/image/${src}`; // Load from the images folder
+      img.alt = `Comic image ${src}`;
+      comic.appendChild(img);
+    });
+  }
 
-    // After the transition duration (0.5s), hide the overlay and reveal the comic viewer
-    setTimeout(function () {
-      homepage.style.display = "none";
-      comic.style.display = "flex";
+  // Add click event listener to the start button
+  startButton.addEventListener('click', function () {
+    // Fade out the homepage overlay
+    homepage.classList.add('hidden');
 
-      // Load images into the comic container
-      imageFiles.forEach(src => {
-        const img = document.createElement('img');
-        img.src = `images/${src}`;
-        comic.appendChild(img);
-      });
-    }, 500);
+    // Load images after the overlay fades out
+    setTimeout(() => {
+      loadImages();
+    }, 500); // Wait for the fade-out transition to complete
   });
 
-  // Handle scrolling by tapping left or right side of the screen
+  // Event listener for clicking on the body to scroll left or right
   document.body.addEventListener('click', (e) => {
     const x = e.clientX;
     const middle = window.innerWidth / 2;
