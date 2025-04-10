@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add event listener for start button
   startButton.addEventListener("click", function () {
     // Fade out the overlay by changing its opacity
+    homepageOverlay.style.transition = 'opacity 0.5s';
     homepage.style.opacity = '0';
 
     // After the transition duration (0.5s), hide the overlay and reveal the comic viewer
