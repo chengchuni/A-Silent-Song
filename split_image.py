@@ -4,7 +4,7 @@ from io import BytesIO
 import os
 
 # 資料夾路徑
-folder_url = "https://github.com/chengchuni/JamSpud/tree/main/images/"
+folder_url = "https://github.com/chengchuni/JamSpud/raw/main/images/"
 
 # 圖片檔案列表，假設圖片名稱是 image1.png, image2.png...
 image_files = ["wln0319-1-1.jpg", "wln0319-1-2.jpg", "wln0319-2-1.jpg", "wln0319-2-2.jpg", "wln0319-3-1.jpg", "wln0319-3-2.jpg", "wln0319-4-1.jpg", "wln0319-4-2.jpg"]  # 你可以根據需要添加圖片名稱
