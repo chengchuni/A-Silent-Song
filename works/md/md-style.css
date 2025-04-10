@@ -30,7 +30,7 @@ body {
 
 /* Styling for the start button */
 .start-button {
-  position: fixed;
+  position: sticky;
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Adjust horizontal position to center */
   top: 70%; /* Position the button 80% of the height of the viewport from the top */
