@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadImages() {
     imageFiles.forEach(src => {
       const img = document.createElement('img');
-      img.src = `/image/${src}`; // Load from the images folder
+      img.src = `../../images/${src}`; // Load from the images folder
       img.alt = `Comic image ${src}`;
       comic.appendChild(img);
     });
