@@ -30,16 +30,24 @@ body {
 
 /* Styling for the start button */
 .start-button {
-  position: sticky;
+  position: fixed;
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Adjust horizontal position to center */
-  top: 70%; /* Position the button 80% of the height of the viewport from the top */
+  top: 60%; /* Position the button 80% of the height of the viewport from the top */
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
+.start-button:hover {
+  transform: scale(0.8);  /* Scales the button to 110% of its original size */
+}
+
+.start-button:active {
+  transform: scale(0.65); /* Scales the button down to 95% of its original size when clicked */
+}
 
 /* Optional: style the image inside the button */
 .start-button img {
