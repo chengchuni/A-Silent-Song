@@ -33,8 +33,11 @@ body {
 .start-button {
   background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
-  outline: none;
+  display: inline-block;
+  position: relative;
+  top: 150px; /* Move down 50px */
 }
 
 /* Optional: style the image inside the button */
