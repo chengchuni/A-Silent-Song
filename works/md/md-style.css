@@ -47,16 +47,19 @@ body {
 }
 
 .comic-container {
+  background: rgba(0,0,0,1)
   display: flex;
   flex-direction: row;
   overflow-x: auto;
   scroll-behavior: smooth;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
 }
 
 .comic-container img {
-  height: 100%;
+  height: 85%vh;
   flex-shrink: 0;
   object-fit: contain;
 }
