@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dearest</title>
-   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="image/favicon.png" />
-  <link rel="stylesheet" href="md-style.css">
+  <link rel="icon" type="image/png" href="works/md/image/favicon.png" />
+  <link rel="stylesheet" href="md-style.css" />
   <style>
-    /* Button styles */
-    .start-button {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      display: inline-block;
+    body {
+      margin: 0;
+      overflow-x: hidden;
     }
 
-    /* Image in button */
-    .start-button img {
-      width: 80%;
-      transition: transform 0.2s ease;
+    .comic-container {
+      display: flex;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      width: 100vw;
+      height: 100vh;
     }
 
-    /* Animation when button is clicked */
-    .start-button:active img {
-      transform: scale(0.95); /* Shrink on click */
+    .comic-container img {
+      width: 100vw;
+      height: auto;
+      flex-shrink: 0;
     }
 
-    /* Button hover effect */
-    .start-button:hover img {
-      opacity: 0.8; /* Slight opacity change on hover */
-    }
-
-    /* Overlay page */
     #homepage {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: url('../../assets/overlay.png') center center no-repeat;
+      background-color: rgba(0, 0, 0, 0.4); /* semi-transparent */
+      background-image: url("works/md/image/overlay.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
-      opacity: 0.75
+      z-index: 10;
       transition: opacity 0.5s;
     }
 
-    /* Hide overlay after fade-out */
     #homepage.hidden {
       opacity: 0;
-      display: none;
+      pointer-events: none;
+    }
+
+    .start-button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .start-button img {
+      width: 200px;
+      transition: transform 0.2s ease;
+    }
+
+    .start-button:active img {
+      transform: scale(0.95);
+    }
+
+    .start-button:hover img {
+      opacity: 0.8;
     }
   </style>
 </head>
+
 <body>
-  <!-- Homepage overlay with background PNG -->
+  <!-- ✅ Comic container (under the overlay) -->
+  <div class="comic-container" id="comic"></div>
+
+  <!-- ✅ Overlay on top -->
   <div id="homepage" class="homepage">
-    <!-- Start button with an image -->
     <button id="startButton" class="start-button">
-      <img src="image/start-button.png" alt="Start" />
+      <img src="works/md/image/start-button.png" alt="Start" />
     </button>
   </div>
-  
-  <div class="comic-container" id="comic">
-    <!-- Images will be loaded here -->
-  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
+
