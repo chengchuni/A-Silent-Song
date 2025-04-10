@@ -15,10 +15,14 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('images/overlay.png') no-repeat center center;
+  background-image: url('/image/overlay.png');
   background-size: cover;
-  z-index: 1000;
-  opacity: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
   transition: opacity 0.5s ease-out;
   
   /* Center the start button */
