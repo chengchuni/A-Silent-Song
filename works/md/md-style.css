@@ -33,7 +33,7 @@ body {
   position: fixed;
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Adjust horizontal position to center */
-  top: 70vh; /* Position the button 80% of the height of the viewport from the top */
+  top: 70%; /* Position the button 80% of the height of the viewport from the top */
   background: none;
   border: none;
   padding: 0;
