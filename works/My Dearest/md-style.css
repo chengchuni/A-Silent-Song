@@ -3,6 +3,42 @@ body {
   padding: 0;
   overflow: hidden;
   touch-action: manipulation;
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Homepage overlay styling with a custom PNG background */
+.homepage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('images/overlay.png') no-repeat center center;
+  background-size: cover;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  
+  /* Center the start button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling for the start button */
+.start-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Optional: style the image inside the button */
+.start-button img {
+  width: 150px; /* adjust as needed */
+  height: auto;
 }
 
 .comic-container {
@@ -15,7 +51,7 @@ body {
 }
 
 .comic-container img {
-  height: 100vh;
+  height: 85%;
   flex-shrink: 0;
   object-fit: contain;
 }
