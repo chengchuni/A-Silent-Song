@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Load images dynamically
   const imageFiles = [
-    'wln0319-1-1.jpg',
-    'wln0319-1-2.jpg',
-    'wln0319-2-1.jpg',
-    'wln0319-2-2.jpg',
-    'wln0319-3-1.jpg',
-    'wln0319-3-2.jpg',
-    'wln0319-4-1.jpg',
-    'wln0319-4-2.jpg',
+    'wln0319-1-1.webp',
+    'wln0319-1-2.webp',
+    'wln0319-2-1.webp',
+    'wln0319-2-2.webp',
+    'wln0319-3-1.webp',
+    'wln0319-3-2.webp',
+    'wln0319-4-1.webp',
+    'wln0319-4-2.webp',
     // Add more image filenames as needed
   ];
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Load images into the comic container
       imageFiles.forEach(src => {
         const img = document.createElement('img');
-        img.src = `../../images/${src}`;
+        img.src = `works/md/image/${src}`;
         comic.appendChild(img);
       });
     }, 500);
