@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       imageFiles.forEach(src => {
         const img = document.createElement('img');
-        img.src = `../../image/${src}`;  // ✅ updated for your folder
+        img.src = `../../images/${src}`;  // ✅ updated for your folder
         comic.appendChild(img);
       });
     }, 500);
