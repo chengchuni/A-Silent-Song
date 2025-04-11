@@ -10,12 +10,8 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  background-image: url('./image/overlay.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: flex-end;
