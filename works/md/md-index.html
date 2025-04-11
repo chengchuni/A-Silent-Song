@@ -12,7 +12,7 @@
      <div id="loadingImageWrapper">
     <img id="loadingImage" src="./image/load-1.png" alt="Loading..." />
   </div>
-    <div id="loadingText">Loading... 0%</div>
+    <div id="loadingText"> 0%</div>
     <button id="startButton" class="start-button" style="display: none; opacity: 0;">
       <img src="./image/start-button.png" alt="Start" />
     </button>
@@ -40,7 +40,7 @@
 
      const preloadedImages = [];
      let loadingFrame = 1;
-const totalFrames = 3;
+const totalFrames = 4;
 let loadingInterval;
 
 const loadingImage = document.getElementById("loadingImage");
@@ -50,7 +50,7 @@ function startLoadingAnimation() {
   loadingInterval = setInterval(() => {
     loadingFrame = (loadingFrame % totalFrames) + 1;
     loadingImage.src = `./image/load-${loadingFrame}.png`;
-  }, 300); // adjust speed here
+  }, 500); // adjust speed here
 }
 
 startLoadingAnimation();
