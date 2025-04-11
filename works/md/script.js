@@ -12,54 +12,67 @@ const imageFiles = [
 
 let preloadedImages = [];
 
+// Preload images and handle potential errors
 const preloadImages = () => {
   return Promise.all(imageFiles.map(src => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const img = document.createElement('img');
       img.src = `../../images/${src}`;
+      
+      // Success handler
       img.onload = () => {
         img.classList.add('comic-img');
         preloadedImages.push(img);
         resolve();
       };
+
+      // Error handler
+      img.onerror = () => {
+        console.error(`Failed to load image: ${src}`);
+        reject(`Failed to load image: ${src}`);
+      };
     });
   }));
 };
 
+// Show images with a staggered fade-in effect
 const showImages = () => {
   preloadedImages.forEach((img, index) => {
     comic.appendChild(img);
     setTimeout(() => {
-      img.classList.add('visible');
-    }, index * 100); // stagger fade-in
+      img.classList.add('visible');  // Add class for fade-in effect
+    }, index * 100); // Stagger fade-in
   });
 };
 
-// Only allow Start after all images loaded
+// Only allow Start after all images are loaded
 preloadImages().then(() => {
-  loader.style.display = 'none';
-  startButton.style.display = 'block';
+  loader.style.display = 'none';   // Hide loader once images are loaded
+  startButton.style.display = 'block';  // Show start button
+}).catch(error => {
+  loader.innerHTML = 'Error loading images. Please try again later.';  // Display error message if any image fails to load
+  console.error(error);
 });
 
-// Click to start
+// Click to start the comic
 startButton.addEventListener('click', () => {
   homepage.classList.add('hidden');
-  comic.classList.add('fade-in');
-  showImages();
+  comic.classList.add('fade-in');   // Add fade-in class to comic
+  showImages();  // Display preloaded images
 });
 
-// Tap to scroll
+// Tap to scroll functionality (on mobile)
 document.body.addEventListener('click', (e) => {
   if (!homepage.classList.contains('hidden')) return;
 
-  const x = e.clientX;
-  const middle = window.innerWidth / 2;
-  const scrollAmount = window.innerWidth * 0.5;
+  const x = e.clientX;  // Get the x-coordinate of the click
+  const middle = window.innerWidth / 2;  // Divide the screen width in half
+  const scrollAmount = window.innerWidth * 0.5;  // Set scroll amount to 50% of screen width
 
+  // Check if the click was on the right or left side of the screen
   if (x > middle) {
-    comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });  // Scroll right
   } else {
-    comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });  // Scroll left
   }
 });
-
