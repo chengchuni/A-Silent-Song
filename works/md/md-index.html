@@ -4,20 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dearest</title>
-  <link rel="icon" type="image/x-icon" href="../../assets/favicon.png" />
+  <link rel="icon" type="image/png" href="works/md/image/favicon.png" />
   <link rel="stylesheet" href="md-style.css" />
   <style>
     body {
       margin: 0;
-      padding: 0;
-      overflow: auto;
+      overflow-x: hidden;
+      font-family: sans-serif;
     }
 
-    .comic-container img {
-     width: 100%;
-     height: 100%;
-     object-fit: cover; /* Ensures the image covers the entire area */
-     flex-shrink: 0;
+    .comic-container {
+      display: flex;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .comic-container.fade-in {
+      opacity: 1;
     }
 
     .comic-container img {
@@ -32,21 +39,26 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.4); /* semi-transparent */
-      background-image: url("../../assets/overlay.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 10;
-      transition: opacity 0.5s;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
     #homepage.hidden {
       opacity: 0;
       pointer-events: none;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .start-button {
@@ -54,6 +66,7 @@
       border: none;
       padding: 0;
       cursor: pointer;
+      position: absolute;
     }
 
     .start-button img {
@@ -68,21 +81,68 @@
     .start-button:hover img {
       opacity: 0.8;
     }
+
+    @media (orientation: portrait) {
+      .start-button {
+        bottom: 20%;
+      }
+    }
+
+    @media (orientation: landscape) {
+      .start-button {
+        bottom: 10%;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <!-- ✅ Comic container (under the overlay) -->
   <div class="comic-container" id="comic"></div>
 
-  <!-- ✅ Overlay on top -->
-  <div id="homepage" class="homepage">
+  <div id="homepage">
     <button id="startButton" class="start-button">
-      <img src="../../assets/start-button.png" alt="Start" />
+      <img src="works/md/image/start-button.png" alt="Start" />
     </button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const comic = document.getElementById('comic');
+    const imageFiles = [
+      'wln0319-1-1.jpg', 'wln0319-1-2.jpg',
+      'wln0319-2-1.jpg', 'wln0319-2-2.jpg',
+      'wln0319-3-1.jpg', 'wln0319-3-2.jpg',
+      'wln0319-4-1.jpg', 'wln0319-4-2.jpg'
+    ];
+
+    // Preload and append images in correct order
+    window.addEventListener('DOMContentLoaded', () => {
+      imageFiles.forEach(src => {
+        const img = document.createElement('img');
+        img.src = `works/md/image/${src}`;
+        img.onload = () => comic.appendChild(img);
+      });
+    });
+
+    // Start button behavior
+    document.getElementById("startButton").addEventListener("click", function () {
+      document.getElementById("homepage").classList.add("hidden");
+      comic.classList.add("fade-in");
+    });
+
+    // Scroll by tapping left or right
+    document.body.addEventListener('click', (e) => {
+      const homepage = document.getElementById('homepage');
+      if (!homepage.classList.contains('hidden')) return;
+
+      const x = e.clientX;
+      const middle = window.innerWidth / 2;
+      const scrollAmount = window.innerWidth * 0.5;
+
+      if (x > middle) {
+        comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      } else {
+        comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+    });
+  </script>
 </body>
 </html>
-
