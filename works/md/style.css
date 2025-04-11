@@ -87,7 +87,7 @@ body {
 
 #loadingUI {
   position: absolute;
-  bottom: 45vh;
+  bottom: 60vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -95,6 +95,7 @@ body {
   gap: 12px;
   z-index: 11;
 }
+
 
 #overlayImage {
   position: absolute;
