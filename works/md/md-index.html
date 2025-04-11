@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dearest</title>
   <link rel="icon" href="./image/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -69,7 +70,7 @@ startLoadingAnimation();
        imagesLoaded++;
 
       const percent = Math.round((imagesLoaded / imageFiles.length) * 100);
-      loadingText.textContent = `Loading... ${percent}%`;
+      loadingText.textContent = `${percent}%`;
 
       if (imagesLoaded === imageFiles.length) {
   clearInterval(loadingInterval);
