@@ -59,6 +59,10 @@ startButton.addEventListener('click', () => {
   homepage.classList.add('hidden');
   comic.classList.add('fade-in');   // Add fade-in class to comic
   showImages();  // Display preloaded images
+  console.log('Start button clicked');
+  homepage.classList.add('hidden');
+  comic.classList.add('fade-in');
+  showImages();
 });
 
 // Tap to scroll functionality (on mobile)
