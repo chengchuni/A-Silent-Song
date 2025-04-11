@@ -70,7 +70,7 @@ body {
 }
 
 #loadingImage {
-  width: 200px;
+  width: 150px;
   height: auto;
 }
 
@@ -79,6 +79,17 @@ body {
   font-size: 1.6rem;
   color: white;
   font-weight: normal;
+}
+
+#loadingUI {
+  position: absolute;
+  bottom: 45vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 11;
 }
 
 #overlayImage {
