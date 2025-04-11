@@ -10,131 +10,116 @@
 </head>
 <body>
   <div id="homepage" style="position: relative; overflow: auto;">
-  <img id="overlayImage" src="./image/overlay.png" alt=""/>
-  <div id="loadingImageWrapper">
-  <img id="loadingImage" src="./image/load-1.png" alt="Loading..." />
-  </div>
-    <div id="loadingText"> 0%</div>
+    <img id="overlayImage" src="./image/overlay.png" alt="" />
+    <div id="loadingImageWrapper">
+      <img id="loadingImage" src="./image/load-1.png" alt="Loading..." />
+    </div>
+    <div id="loadingText">0%</div>
     <button id="startButton" class="start-button" style="display: none; opacity: 0;">
-    <img src="./image/start-button.png" alt="Start" />
+      <img src="./image/start-button.png" alt="Start" />
     </button>
   </div>
 
   <div class="comic-container" id="comic"></div>
   <a href="https://chengchuni.github.io/JamSpud/" id="backButton">← Home</a>
 
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const startButton = document.getElementById("startButton");
       const homepage = document.getElementById("homepage");
       const comic = document.getElementById("comic");
-      const scrollAmount = window.innerWidth * 0.5;
+      const loadingText = document.getElementById("loadingText");
+      const loadingImageWrapper = document.getElementById("loadingImageWrapper");
 
       const imageFiles = [];
+      for (let page = 1; page <= 4; page++) {
+        for (let chunk = 1; chunk <= 10; chunk++) {
+          imageFiles.push(`wln0319_${page}-${chunk}.webp`);
+        }
+      }
 
-for (let page = 1; page <= 4; page++) {
-  for (let chunk = 1; chunk <= 10; chunk++) {
-    imageFiles.push(`wln0319_${page}-${chunk}.webp`);
-  }
-}
+      function createLazyImage(src, eager = false) {
+        const img = document.createElement("img");
+        img.classList.add("comic-image");
+        img.dataset.src = `./image/${src}`;
+        if (eager) img.src = `./image/${src}`;
+        img.loading = "lazy";
+        return img;
+      }
 
+      let loadedInitial = 0;
+      const initialLoadCount = 6;
 
-     const preloadedImages = [];
-     let loadingFrame = 1;
-const totalFrames = 4;
-let loadingInterval;
+      imageFiles.forEach((src, index) => {
+        const eager = index < initialLoadCount;
+        const img = createLazyImage(src, eager);
+        comic.appendChild(img);
 
-const loadingImage = document.getElementById("loadingImage");
-const loadingImageWrapper = document.getElementById("loadingImageWrapper");
+        if (eager) {
+          img.onload = () => {
+            loadedInitial++;
+            const percent = Math.round((loadedInitial / initialLoadCount) * 100);
+            loadingText.textContent = `${percent}%`;
 
-function startLoadingAnimation() {
-  loadingInterval = setInterval(() => {
-    loadingFrame = (loadingFrame % totalFrames) + 1;
-    loadingImage.src = `./image/load-${loadingFrame}.png`;
-  }, 500); // adjust speed here
-}
-
-startLoadingAnimation();
-
-      
-     let imagesLoaded = 0;
-     const loadingText = document.getElementById("loadingText");
-
-     imageFiles.forEach((src, index) => {
-      const img = new Image();
-      img.src = "./image/" + src;
-      img.classList.add("comic-image");
- 
-      img.onload = () => {
-       preloadedImages[index] = img; // put it in the right place
-       imagesLoaded++;
-
-      const percent = Math.round((imagesLoaded / imageFiles.length) * 100);
-      loadingText.textContent = `${percent}%`;
-
-      if (imagesLoaded === imageFiles.length) {
-  clearInterval(loadingInterval);
-  loadingImageWrapper.style.display = "none";
-  loadingText.style.display = "none";
-  startButton.style.display = "block";
-  requestAnimationFrame(() => {
-    startButton.style.opacity = "1";
-  });
-  startButton.disabled = false;
-}
-
-  };
-});
-
-
-    startButton.addEventListener("click", function () {
-  comic.style.display = "flex"; // show comic container
-  preloadedImages.forEach(img => comic.appendChild(img)); // add images now
-
-  requestAnimationFrame(() => {
-    comic.classList.add('visible'); // fade in comic immediately
-  });
-
- homepage.style.opacity = '0';
-setTimeout(() => {
-  homepage.style.display = "none";
-}, 500);
-
-  // Enable wheel scroll
-  comic.addEventListener("wheel", function (e) {
-    if (e.deltaY !== 0) {
-      e.preventDefault();
-      comic.scrollBy({ left: e.deltaY * 3, behavior: 'smooth' });
-    }
-  }, { passive: false });
-});
-
-
-
-      // Tap to scroll
-      document.body.addEventListener('click', (e) => {
-        if (homepage.style.display !== "none") return;
-
-        const x = e.clientX;
-        const middle = window.innerWidth / 2;
-
-        if (x > middle) {
-          comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        } else {
-          comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            if (loadedInitial === initialLoadCount) {
+              loadingImageWrapper.style.display = "none";
+              loadingText.style.display = "none";
+              startButton.style.display = "block";
+              requestAnimationFrame(() => {
+                startButton.style.opacity = "1";
+              });
+            }
+          };
         }
       });
 
-      // Enable mouse wheel horizontal scroll
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute("data-src");
+              observer.unobserve(img);
+            }
+          }
+        });
+      }, {
+        root: comic,
+        rootMargin: "100px",
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.comic-image').forEach(img => observer.observe(img));
+
+      startButton.addEventListener("click", function () {
+        comic.style.display = "flex";
+        requestAnimationFrame(() => comic.classList.add('visible'));
+        homepage.style.opacity = '0';
+        setTimeout(() => {
+          homepage.style.display = "none";
+        }, 500);
+      });
+
+      document.body.addEventListener('click', (e) => {
+        if (homepage.style.display !== "none") return;
+        const x = e.clientX;
+        const middle = window.innerWidth / 2;
+        if (x > middle) {
+          comic.scrollBy({ left: window.innerWidth * 0.5, behavior: 'smooth' });
+        } else {
+          comic.scrollBy({ left: -window.innerWidth * 0.5, behavior: 'smooth' });
+        }
+      });
+
       comic.addEventListener("wheel", function (e) {
         if (e.deltaY !== 0) {
-        e.preventDefault();
-        comic.scrollBy({ left: e.deltaY, behavior: 'smooth' });
-      }
-     }, { passive: false });
-
+          e.preventDefault();
+          comic.scrollBy({ left: e.deltaY * 3, behavior: 'smooth' });
+        }
+      }, { passive: false });
     });
   </script>
 </body>
 </html>
+
