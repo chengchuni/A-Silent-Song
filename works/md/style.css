@@ -54,7 +54,7 @@ body {
 
 #loadingUI {
   position: absolute;
-  top: 5vh;
+  bottom: 25vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -66,7 +66,7 @@ body {
 
 #loadingImageWrapper {
   position: absolute;
-  top: 5vh;
+  bottom: 25vh;
   width: 100%;
   display: flex;
   justify-content: center;
