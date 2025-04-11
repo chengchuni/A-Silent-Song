@@ -24,5 +24,19 @@
   </div>
 
   <script src="js/kudos.js"></script>
+  <body class="fade-in">
+<script>
+  document.querySelectorAll('a').forEach(link => {
+    if (link.href && link.getAttribute('target') !== '_blank') {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location = this.href;
+        }, 500); // Match the transition time
+      });
+    }
+  });
+</script>
 </body>
 </html>
