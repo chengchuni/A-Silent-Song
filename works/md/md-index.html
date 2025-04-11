@@ -92,10 +92,10 @@ startLoadingAnimation();
 
       // Show images when Start is clicked
       startButton.addEventListener("click", function () {
+        comic.style.display = "flex";
         homepage.style.opacity = '0';
         setTimeout(function () {
         homepage.style.display = "none";
-        comic.style.display = "flex";
         preloadedImages.forEach(img => comic.appendChild(img));
      // Blur fade in
         requestAnimationFrame(() => comic.classList.add('visible'));
