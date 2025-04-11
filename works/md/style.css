@@ -48,6 +48,11 @@ body {
   opacity: 0.8;
 }
 
+.start-button {
+  transition: opacity 0.4s ease;
+}
+
+
 #loadingText {
   position: absolute;
   top: 5vh;
