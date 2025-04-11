@@ -88,7 +88,9 @@ body {
   height: 100vh;
   width: auto;
   transform: translateX(-50%);
-  z-index: 0;
+  z-index: 5;
+  opacity: 0.8; /* ✅ Adjust this! */
+  pointer-events: none; /* optional: allows clicks to pass through */
 }
 
 #backButton {
