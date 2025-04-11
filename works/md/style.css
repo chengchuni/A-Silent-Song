@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+#homepage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  background-image: url('./image/overlay.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+.start-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.start-button img {
+  width: 200px;
+}
+
+.comic-container {
+  display: none;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
+}
+
+.comic-container img {
+  width: 100vw;
+  height: auto;
+  flex-shrink: 0;
+}
