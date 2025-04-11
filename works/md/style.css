@@ -89,8 +89,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: auto;
+  height: auto;
+  width: 100vw;
   z-index: 0;
 }
 
