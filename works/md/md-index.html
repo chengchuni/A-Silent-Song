@@ -90,24 +90,28 @@ startLoadingAnimation();
 });
 
 
-      // Show images when Start is clicked
-      startButton.addEventListener("click", function () {
-        comic.style.display = "flex";
-        homepage.style.opacity = '0';
-        setTimeout(function () {
-        homepage.style.display = "none";
-        preloadedImages.forEach(img => comic.appendChild(img));
-     // Blur fade in
-        requestAnimationFrame(() => comic.classList.add('visible'));
-     // Wheel-to-horizontal scroll
-      comic.addEventListener("wheel", function (e) {
-        if (e.deltaY !== 0) {
-          e.preventDefault();
-          comic.scrollBy({ left: e.deltaY*3, behavior: 'smooth' });
-        }
-      }, { passive: false });
-       }, 500);
-      });
+    startButton.addEventListener("click", function () {
+  comic.style.display = "flex"; // show comic container
+  preloadedImages.forEach(img => comic.appendChild(img)); // add images now
+
+  requestAnimationFrame(() => {
+    comic.classList.add('visible'); // fade in comic immediately
+  });
+
+  homepage.style.opacity = '0'; // overlay fades out
+  setTimeout(function () {
+    homepage.style.display = "none";
+  }, 500);
+
+  // Enable wheel scroll
+  comic.addEventListener("wheel", function (e) {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+      comic.scrollBy({ left: e.deltaY * 3, behavior: 'smooth' });
+    }
+  }, { passive: false });
+});
+
 
 
       // Tap to scroll
