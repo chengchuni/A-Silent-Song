@@ -13,7 +13,7 @@
     <img id="loadingImage" src="./image/load-1.png" alt="Loading..." />
   </div>
     <div id="loadingText">Loading... 0%</div>
-    <button id="startButton" class="start-button">
+    <button id="startButton" class="start-button" style="display: none; opacity: 0;">
       <img src="./image/start-button.png" alt="Start" />
     </button>
   </div>
@@ -72,10 +72,16 @@ startLoadingAnimation();
       loadingText.textContent = `Loading... ${percent}%`;
 
       if (imagesLoaded === imageFiles.length) {
-       loadingText.style.display = "none";
-       startButton.style.opacity = "1"; // fade in
-       startButton.disabled = false;
-      }
+  clearInterval(loadingInterval);
+  loadingImageWrapper.style.display = "none";
+  loadingText.style.display = "none";
+  startButton.style.display = "block";
+  requestAnimationFrame(() => {
+    startButton.style.opacity = "1";
+  });
+  startButton.disabled = false;
+}
+
   };
 });
 
