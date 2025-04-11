@@ -85,6 +85,16 @@ body {
   font-weight: normal;
 }
 
+#overlayImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+  z-index: 0;
+}
+
+
 .comic-container {
   display: none;
   flex-direction: row;
