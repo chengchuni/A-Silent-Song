@@ -31,16 +31,14 @@
       const comic = document.getElementById("comic");
       const scrollAmount = window.innerWidth * 0.5;
 
-      const imageFiles = [
-        'wln0319-1-1.webp',
-        'wln0319-1-2.webp',
-        'wln0319-2-1.webp',
-        'wln0319-2-2.webp',
-        'wln0319-3-1.webp',
-        'wln0319-3-2.webp',
-        'wln0319-4-1.webp',
-        'wln0319-4-2.webp'
-      ];
+      const imageFiles = [];
+
+for (let page = 1; page <= 4; page++) {
+  for (let chunk = 1; chunk <= 10; chunk++) {
+    imageFiles.push(`wln0319_${page}-${chunk}.webp`);
+  }
+}
+
 
      const preloadedImages = [];
      let loadingFrame = 1;
