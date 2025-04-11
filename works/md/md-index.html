@@ -53,9 +53,18 @@
         homepage.style.display = "none";
         comic.style.display = "flex";
         preloadedImages.forEach(img => comic.appendChild(img));
+     // Blur fade in
         requestAnimationFrame(() => comic.classList.add('visible'));
+     // Wheel-to-horizontal scroll
+      comic.addEventListener("wheel", function (e) {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          comic.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+        }
+      }, { passive: false });
        }, 500);
       });
+
 
       // Tap to scroll
       document.body.addEventListener('click', (e) => {
