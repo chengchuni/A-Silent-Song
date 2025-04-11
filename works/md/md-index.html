@@ -37,6 +37,7 @@
 
      const preloadedImages = [];
      let imagesLoaded = 0;
+     const loadingText = document.getElementById("loadingText");
 
      imageFiles.forEach((src, index) => {
       const img = new Image();
@@ -47,8 +48,14 @@
        preloadedImages[index] = img; // put it in the right place
        imagesLoaded++;
 
-    // When ALL images are loaded, allow button to activate (optional)
-    // Or just log: console.log(`Loaded ${imagesLoaded}/${imageFiles.length}`);
+      const percent = Math.round((imagesLoaded / imageFiles.length) * 100);
+      loadingText.textContent = `Loading... ${percent}%`;
+
+      if (imagesLoaded === imageFiles.length) {
+       loadingText.style.display = "none";
+       startButton.style.opacity = "1"; // fade in
+       startButton.disabled = false;
+      }
   };
 });
 
