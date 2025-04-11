@@ -28,14 +28,16 @@ body {
 .start-button {
   position: absolute;
   left: 50%;
-  bottom: 40vh; /* 👈 adjust this to move the button up or down */
+  bottom: 40vh;
   transform: translateX(-50%);
   background: none;
   border: none;
   cursor: pointer;
   opacity: 1;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, opacity 0.4s ease;
+  z-index: 15; /* ✅ higher than #overlayImage (z-index: 5) */
 }
+
 
 .start-button img {
   width: 120px;
