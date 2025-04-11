@@ -18,9 +18,10 @@ body {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end; /* lock button to bottom */
   z-index: 10;
   transition: opacity 0.5s ease;
+  padding-bottom: 5vh; /* spacing from bottom edge */
 }
 
 .start-button {
@@ -30,7 +31,8 @@ body {
 }
 
 .start-button img {
-  width: 200px;
+  width: 160px;
+  max-width: 80vw;
 }
 
 .comic-container {
@@ -41,6 +43,12 @@ body {
   scroll-behavior: smooth;
   width: 100vw;
   height: 100vh;
+}
+
+.comic-container img.comic-image {
+  width: 100vw;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .comic-container img {
