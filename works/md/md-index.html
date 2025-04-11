@@ -69,6 +69,15 @@
           comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         }
       });
+
+      // Enable mouse wheel horizontal scroll
+      comic.addEventListener("wheel", function (e) {
+        if (e.deltaY !== 0) {
+        e.preventDefault();
+        comic.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+      }
+     }, { passive: false });
+
     });
   </script>
 </body>
