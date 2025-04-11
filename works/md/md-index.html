@@ -117,7 +117,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       imageFiles.forEach(src => {
         const img = document.createElement('img');
-        img.src = `works/md/image/${src}`;
+        img.src = `../../images/${src}`;
         img.onload = () => comic.appendChild(img);
       });
     });
