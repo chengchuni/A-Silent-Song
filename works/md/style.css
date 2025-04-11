@@ -5,7 +5,7 @@ body {
 }
 
 #homepage {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -18,18 +18,13 @@ body {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* lock button to bottom */
-  overflow-y: auto;
+  align-items: flex-end;
+  padding-bottom: 20vh;
   z-index: 10;
   transition: opacity 0.5s ease;
-  padding-bottom: 20vh; /* spacing from bottom edge */
 }
 
 .start-button {
-  position: absolute;
-  left: 50%;
-  bottom: 20vh; /* 👈 Adjust this to move it up/down */
-  transform: translateX(-50%);
   background: none;
   border: none;
   cursor: pointer;
@@ -41,7 +36,7 @@ body {
   max-width: 80vw;
 }
 
-.start-button:active {
+.start-button:active img {
   transform: scale(0.95);
 }
 
