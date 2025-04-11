@@ -50,10 +50,11 @@
       startButton.addEventListener("click", function () {
         homepage.style.opacity = '0';
         setTimeout(function () {
-          homepage.style.display = "none";
-          comic.style.display = "flex";
-          preloadedImages.forEach(img => comic.appendChild(img));
-        }, 500);
+        homepage.style.display = "none";
+        comic.style.display = "flex";
+        preloadedImages.forEach(img => comic.appendChild(img));
+        requestAnimationFrame(() => comic.classList.add('visible'));
+       }, 500);
       });
 
       // Tap to scroll
