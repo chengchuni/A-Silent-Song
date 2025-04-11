@@ -39,6 +39,23 @@
       ];
 
      const preloadedImages = [];
+     let loadingFrame = 1;
+const totalFrames = 3;
+let loadingInterval;
+
+const loadingImage = document.getElementById("loadingImage");
+const loadingImageWrapper = document.getElementById("loadingImageWrapper");
+
+function startLoadingAnimation() {
+  loadingInterval = setInterval(() => {
+    loadingFrame = (loadingFrame % totalFrames) + 1;
+    loadingImage.src = `./image/load-${loadingFrame}.png`;
+  }, 300); // adjust speed here
+}
+
+startLoadingAnimation();
+
+      
      let imagesLoaded = 0;
      const loadingText = document.getElementById("loadingText");
 
