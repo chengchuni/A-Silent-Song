@@ -59,7 +59,7 @@
       comic.addEventListener("wheel", function (e) {
         if (e.deltaY !== 0) {
           e.preventDefault();
-          comic.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+          comic.scrollBy({ left: e.deltaY*3, behavior: 'smooth' });
         }
       }, { passive: false });
        }, 500);
