@@ -47,13 +47,9 @@ body {
 }
 
 .comic-container img.comic-image {
-  width: 100vw;
-  height: auto;
+  height: 100vh;
+  weight: auto;
   flex-shrink: 0;
 }
 
-.comic-container img {
-  width: 100vw;
-  height: auto;
-  flex-shrink: 0;
 }
