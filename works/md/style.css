@@ -94,6 +94,24 @@ body {
   z-index: 0;
 }
 
+#backButton {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
+  z-index: 20;
+  transition: background-color 0.3s ease;
+}
+
+#backButton:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
 
 .comic-container {
   display: none;
