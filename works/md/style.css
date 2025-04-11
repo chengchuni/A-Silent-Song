@@ -25,6 +25,10 @@ body {
 }
 
 .start-button {
+  position: absolute;
+  left: 50%;
+  bottom: 25vh; /* 👈 adjust this to move the button up or down */
+  transform: translateX(-50%);
   background: none;
   border: none;
   cursor: pointer;
