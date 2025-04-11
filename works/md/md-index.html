@@ -98,10 +98,10 @@ startLoadingAnimation();
     comic.classList.add('visible'); // fade in comic immediately
   });
 
-  homepage.style.opacity = '0'; // overlay fades out
-  setTimeout(function () {
-    homepage.style.display = "none";
-  }, 500);
+ homepage.style.opacity = '0';
+setTimeout(() => {
+  homepage.style.display = "none";
+}, 500);
 
   // Enable wheel scroll
   comic.addEventListener("wheel", function (e) {
