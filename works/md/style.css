@@ -23,7 +23,7 @@ body {
 .start-button {
   position: absolute;
   left: 50%;
-  bottom: 25vh; /* 👈 adjust this to move the button up or down */
+  bottom: 40vh; /* 👈 adjust this to move the button up or down */
   transform: translateX(-50%);
   background: none;
   border: none;
@@ -32,7 +32,7 @@ body {
 }
 
 .start-button img {
-  width: 160px;
+  width: 120px;
   max-width: 80vw;
 }
 
@@ -50,7 +50,7 @@ body {
 
 #loadingUI {
   position: absolute;
-  bottom: 25vh;
+  bottom: 45vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -62,7 +62,7 @@ body {
 
 #loadingImageWrapper {
   position: absolute;
-  bottom: 25vh;
+  bottom: 45vh;
   width: 100%;
   display: flex;
   justify-content: center;
