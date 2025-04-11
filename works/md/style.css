@@ -57,7 +57,7 @@ body {
 
 #loadingUI {
   position: absolute;
-  bottom: 45vh;
+  bottom: 60vh;
   width: 100%;
   display: flex;
   justify-content: center;
