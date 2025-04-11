@@ -1,20 +1,94 @@
-#homepage {
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-  transition: backdrop-filter 0.3s ease, opacity 0.5s ease;
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: #000;
 }
 
+/* Homepage Overlay */
+#homepage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);  /* Adds the blur effect */
+  opacity: 0;  /* Start with opacity 0 */
+  animation: fadeIn 1s forwards;  /* Fades in the homepage */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* Fade-In Animation */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
+/* Hidden Homepage (when it is hidden after clicking Start) */
 #homepage.hidden {
   opacity: 0;
   pointer-events: none;
-  backdrop-filter: blur(0);  /* Optional: Remove blur when hidden */
-  transition: opacity 0.5s ease-in-out, backdrop-filter 0.3s ease;
+  transition: opacity 0.5s ease-in-out;
+  backdrop-filter: blur(0);  /* Optional: Removes blur when hidden */
 }
+
+/* Loader (spinning animation) */
+#loader {
+  border: 6px solid #fff;
+  border-top: 6px solid #888;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Spin Animation */
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Start Button */
+#startButton {
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#startButton:hover {
+  background-color: #888;
+  color: #fff;
+}
+
+/* Comic Container */
+#comic {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  width: 100%;
+  height: 100vh;
+  padding: 0 10px;
+  position: relative;
+  background-color: #000;
+  z-index
