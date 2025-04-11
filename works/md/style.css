@@ -69,7 +69,7 @@ body {
 
 #loadingImageWrapper {
   position: absolute;
-  bottom: 45vh;
+  bottom: 20vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -86,17 +86,6 @@ body {
   font-size: 1.6rem;
   color: white;
   font-weight: normal;
-}
-
-#loadingUI {
-  position: absolute;
-  top: 60vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  z-index: 11;
 }
 
 
