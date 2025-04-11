@@ -4,145 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Dearest</title>
-  <link rel="icon" type="image/png" href="works/md/image/favicon.png" />
+  <link rel="icon" type="image/png" href="../../assets/favicon.png" />
   <link rel="stylesheet" href="md-style.css" />
-  <style>
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      font-family: sans-serif;
-    }
-
-    .comic-container {
-      display: flex;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .comic-container.fade-in {
-      opacity: 1;
-    }
-
-    .comic-container img {
-      width: 100vw;
-      height: auto;
-      flex-shrink: 0;
-    }
-
-    #homepage {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    #homepage.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .start-button {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      position: absolute;
-    }
-
-    .start-button img {
-      width: 200px;
-      transition: transform 0.2s ease;
-    }
-
-    .start-button:active img {
-      transform: scale(0.95);
-    }
-
-    .start-button:hover img {
-      opacity: 0.8;
-    }
-
-    @media (orientation: portrait) {
-      .start-button {
-        bottom: 20%;
-      }
-    }
-
-    @media (orientation: landscape) {
-      .start-button {
-        bottom: 10%;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="comic-container" id="comic"></div>
 
   <div id="homepage">
     <button id="startButton" class="start-button">
-      <img src="works/md/image/start-button.png" alt="Start" />
+      <img src="../../assets/start-button.png" alt="Start" />
     </button>
   </div>
 
-  <script>
-    const comic = document.getElementById('comic');
-    const imageFiles = [
-      'wln0319-1-1.jpg', 'wln0319-1-2.jpg',
-      'wln0319-2-1.jpg', 'wln0319-2-2.jpg',
-      'wln0319-3-1.jpg', 'wln0319-3-2.jpg',
-      'wln0319-4-1.jpg', 'wln0319-4-2.jpg'
-    ];
-
-    // Preload and append images in correct order
-    window.addEventListener('DOMContentLoaded', () => {
-      imageFiles.forEach(src => {
-        const img = document.createElement('img');
-        img.src = `../../images/${src}`;
-        img.onload = () => comic.appendChild(img);
-      });
-    });
-
-    // Start button behavior
-    document.getElementById("startButton").addEventListener("click", function () {
-      document.getElementById("homepage").classList.add("hidden");
-      comic.classList.add("fade-in");
-    });
-
-    // Scroll by tapping left or right
-    document.body.addEventListener('click', (e) => {
-      const homepage = document.getElementById('homepage');
-      if (!homepage.classList.contains('hidden')) return;
-
-      const x = e.clientX;
-      const middle = window.innerWidth / 2;
-      const scrollAmount = window.innerWidth * 0.5;
-
-      if (x > middle) {
-        comic.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      } else {
-        comic.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      }
-    });
-  </script>
+  <script src="md-script.js"></script>
 </body>
 </html>
