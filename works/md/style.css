@@ -29,12 +29,22 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
 .start-button img {
   width: 160px;
   max-width: 80vw;
 }
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.start-button:hover img {
+  opacity: 0.8;
+}
+
 
 .comic-container {
   display: none;
