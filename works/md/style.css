@@ -27,7 +27,7 @@ body {
 .start-button {
   position: absolute;
   left: 50%;
-  bottom: 40vh;
+  bottom: 20vh;
   transform: translateX(-50%);
   background: none;
   border: none;
