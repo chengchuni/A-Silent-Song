@@ -49,17 +49,34 @@
 
       let loadedInitial = 0;
       const initialLoadCount = 6;
+      
+      function handleEagerImageLoad() {
+  loadedInitial++;
+  const percent = Math.round((loadedInitial / initialLoadCount) * 100);
+  loadingText.textContent = `${percent}%`;
 
+  if (loadedInitial === initialLoadCount) {
+    loadingImageWrapper.style.display = "none";
+    loadingText.style.display = "none";
+    startButton.style.display = "block";
+    requestAnimationFrame(() => {
+      startButton.style.opacity = "1";
+    });
+  }
+}
       imageFiles.forEach((src, index) => {
         const eager = index < initialLoadCount;
         const img = createLazyImage(src, eager);
         comic.appendChild(img);
 
         if (eager) {
-          img.onload = () => {
-            loadedInitial++;
-            const percent = Math.round((loadedInitial / initialLoadCount) * 100);
-            loadingText.textContent = `${percent}%`;
+  if (img.complete) {
+    handleEagerImageLoad(); // run instantly if cached
+  } else {
+    img.onload = handleEagerImageLoad; // wait if not loaded yet
+  }
+}
+
 
             if (loadedInitial === initialLoadCount) {
               loadingImageWrapper.style.display = "none";
