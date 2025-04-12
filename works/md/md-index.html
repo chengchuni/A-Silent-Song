@@ -88,12 +88,17 @@
         const img = createLazyImage(src, eager);
         comic.appendChild(img);
 
+        
         if (eager) {
           if (img.complete) {
             handleEagerImageLoad();
           } else {
             img.onload = handleEagerImageLoad;
             img.onerror = handleEagerImageLoad;
+          }
+        }
+ else {
+            img.onload = handleEagerImageLoad;
           }
         }
       });
