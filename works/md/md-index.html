@@ -23,6 +23,7 @@
   <div class="comic-container" id="comic"></div>
   <a href="https://chengchuni.github.io/JamSpud/" id="backButton">← Home</a>
 
+  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const startButton = document.getElementById("startButton");
@@ -30,9 +31,10 @@
       const comic = document.getElementById("comic");
       const loadingText = document.getElementById("loadingText");
       const loadingImageWrapper = document.getElementById("loadingImageWrapper");
+      const loadingImage = document.getElementById("loadingImage");
 
       const imageFiles = [];
-      for (let page = 1; page <= 4; page++) {
+      for (let page = 1; page <= 2; page++) {
         for (let chunk = 1; chunk <= 10; chunk++) {
           imageFiles.push(`wln0319_${page}-${chunk}.webp`);
         }
@@ -47,46 +49,51 @@
         return img;
       }
 
+      // === LOADING ANIMATION ===
+      let loadingFrame = 1;
+      const totalFrames = 4;
+      let loadingInterval;
+
+      function startLoadingAnimation() {
+        loadingInterval = setInterval(() => {
+          loadingFrame = (loadingFrame % totalFrames) + 1;
+          loadingImage.src = `./image/load-${loadingFrame}.png`;
+        }, 400);
+      }
+
+      startLoadingAnimation();
+
+      // === IMAGE LOADING ===
       let loadedInitial = 0;
       const initialLoadCount = 6;
-      
-      function handleEagerImageLoad() {
-  loadedInitial++;
-  const percent = Math.round((loadedInitial / initialLoadCount) * 100);
-  loadingText.textContent = `${percent}%`;
 
-  if (loadedInitial === initialLoadCount) {
-    loadingImageWrapper.style.display = "none";
-    loadingText.style.display = "none";
-    startButton.style.display = "block";
-    requestAnimationFrame(() => {
-      startButton.style.opacity = "1";
-    });
-  }
-}
+      function handleEagerImageLoad() {
+        loadedInitial++;
+        const percent = Math.round((loadedInitial / initialLoadCount) * 100);
+        loadingText.textContent = `${percent}%`;
+
+        if (loadedInitial === initialLoadCount) {
+          clearInterval(loadingInterval);
+          loadingImageWrapper.style.display = "none";
+          loadingText.style.display = "none";
+          startButton.style.display = "block";
+          requestAnimationFrame(() => {
+            startButton.style.opacity = "1";
+          });
+        }
+      }
+
       imageFiles.forEach((src, index) => {
         const eager = index < initialLoadCount;
         const img = createLazyImage(src, eager);
         comic.appendChild(img);
 
         if (eager) {
-  if (img.complete) {
-    handleEagerImageLoad(); // run instantly if cached
-  } else {
-    img.onload = handleEagerImageLoad; // wait if not loaded yet
-  }
-}
-
-
-            if (loadedInitial === initialLoadCount) {
-              loadingImageWrapper.style.display = "none";
-              loadingText.style.display = "none";
-              startButton.style.display = "block";
-              requestAnimationFrame(() => {
-                startButton.style.opacity = "1";
-              });
-            }
-          };
+          if (img.complete) {
+            handleEagerImageLoad();
+          } else {
+            img.onload = handleEagerImageLoad;
+          }
         }
       });
 
@@ -137,6 +144,7 @@
       }, { passive: false });
     });
   </script>
+
 </body>
 </html>
 
