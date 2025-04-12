@@ -93,6 +93,7 @@
             handleEagerImageLoad();
           } else {
             img.onload = handleEagerImageLoad;
+            img.onerror = handleEagerImageLoad;
           }
         }
       });
