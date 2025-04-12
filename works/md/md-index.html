@@ -44,7 +44,10 @@
         const img = document.createElement("img");
         img.classList.add("comic-image");
         img.dataset.src = `./image/${src}`;
-        if (eager) img.src = `./image/${src}`;
+        if (eager) {
+        img.src = "";
+        img.src = `./image/${src}`;
+        }
         img.loading = "lazy";
         return img;
       }
