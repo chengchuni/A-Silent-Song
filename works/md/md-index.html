@@ -84,24 +84,21 @@
       }
 
       imageFiles.forEach((src, index) => {
-        const eager = index < initialLoadCount;
-        const img = createLazyImage(src, eager);
-        comic.appendChild(img);
+  const eager = index < initialLoadCount;
+  const img = createLazyImage(src, eager);
+  comic.appendChild(img);
 
-        
-        if (eager) {
-          if (img.complete) {
-            handleEagerImageLoad();
-          } else {
-            img.onload = handleEagerImageLoad;
-            img.onerror = handleEagerImageLoad;
-          }
-        }
- else {
-            img.onload = handleEagerImageLoad;
-          }
-        }
-      });
+  if (eager) {
+    if (img.complete) {
+      handleEagerImageLoad();
+    } else {
+      img.onload = handleEagerImageLoad;
+      img.onerror = handleEagerImageLoad;
+    }
+  } else {
+    img.onload = handleEagerImageLoad;
+  }
+});
 
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
