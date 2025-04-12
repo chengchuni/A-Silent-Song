@@ -44,10 +44,7 @@
         const img = document.createElement("img");
         img.classList.add("comic-image");
         img.dataset.src = `./image/${src}`;
-        if (eager) {
-        img.src = "";
-        img.src = `./image/${src}`;
-        }
+        if (eager) img.src = `./image/${src}`;
         img.loading = "lazy";
         return img;
       }
@@ -87,21 +84,28 @@
       }
 
       imageFiles.forEach((src, index) => {
-  const eager = index < initialLoadCount;
-  const img = createLazyImage(src, eager);
-  comic.appendChild(img);
-
-  if (eager) {
-    if (img.complete) {
+        const eager = index < initialLoadCount;
+        const img = createLazyImage(src, eager);
+        requestAnimationFrame(() => {
+    observer.observe(img);
+    comic.appendChild(img);
+  });
+  setTimeout(() => {
+    if (loadedInitial < initialLoadCount) {
+      console.warn("Fallback triggered — forcing start button.");
       handleEagerImageLoad();
-    } else {
-      img.onload = handleEagerImageLoad;
-      img.onerror = handleEagerImageLoad;
     }
-  } else {
-    img.onload = handleEagerImageLoad;
-  }
-});
+  }, 3000);
+
+
+        if (eager) {
+          if (img.complete) {
+            handleEagerImageLoad();
+          } else {
+            img.onload = handleEagerImageLoad;
+          }
+        }
+      });
 
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
